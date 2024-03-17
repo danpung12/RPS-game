@@ -1,6 +1,15 @@
 const HANDS = ['rock', 'scissor','paper'];
 
 
+export function RandomHand(){
+  const idx = random(HANDS.length);
+  return HANDS[idx];
+}
+
+function random(n) {
+  return Math.floor(Math.random() * n);
+}
+
 const WINS = {
   rock: 'scissor',
   scissor: 'paper',

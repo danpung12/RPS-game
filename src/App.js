@@ -1,27 +1,37 @@
 import Button from './Button';
 import HandButton from './HandButton';
-import { getResult } from './utils';
+import HandIcon from './HandIcon';
+import { getResult, RandomHand } from './utils';
 import {useState} from 'react';
 
-function getResult(me, other){
-  const comparison = compareHand(me,other);
-  if (comparison)
-
-}
 
 
 function App() {
 
   const [hand, setHand] = useState('rock');
-  const [otherHand, setOtherHand] = useState('scissor');
+  const [otherHand, setOtherHand] = useState('rock');
 
-  function handleClick(value) { console.log(value)};
+  function handleButtonClick(nextHand){
+    const nextOtherHand = RandomHand();
+    setHand(nextHand);
+    setOtherHand(nextOtherHand);
+  }
   return (
     <div>
       <Button> 처음부터 </Button>
-      <HandButton value="rock" onClick={handleClick} />
-      <HandButton value="scissor" onClick={handleClick} />
-      <HandButton value="paper" onClick={handleClick} />
+      <p>{getResult(hand, otherHand)}</p>
+      <div>
+        <HandIcon value={hand}/>
+        VS
+        <HandIcon value={otherHand}/>
+
+      </div>
+      <div>
+        <HandButton value ="rock" onClick={handleButtonClick}></HandButton>
+        <HandButton value ="scissor" onClick={handleButtonClick}></HandButton>
+        <HandButton value ="paper" onClick={handleButtonClick}></HandButton>
+
+      </div>
     </div>
   );
 }
